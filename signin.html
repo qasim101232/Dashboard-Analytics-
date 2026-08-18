@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In - PharmaCare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c7da0'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/><path d='M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z'/></svg>">
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <div class="row min-vh-100 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <div class="logo-icon mx-auto mb-3" style="width: 60px; height: 60px; font-size: 24px;">
+                PC
+              </div>
+              <h2 class="fw-bold">PharmaCare</h2>
+              <p class="text-muted">Sign in to your pharmacy account</p>
+            </div>
+
+            <form onsubmit="return signIn(event)" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="ti ti-mail"></i></span>
+                  <input type="email" class="form-control" placeholder="pharmacist@example.com" value="pharmacist@pharmacare.com" required>
+                </div>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="ti ti-lock"></i></span>
+                  <input type="password" class="form-control" placeholder="••••••••" value="password123" required>
+                </div>
+                <div class="invalid-feedback">Please enter your password.</div>
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember">
+                <label class="form-check-label" for="remember">Remember me</label>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Sign In</button>
+
+              <div class="text-center">
+                <a href="#" class="text-primary small">Forgot password?</a>
+                <span class="mx-2 text-muted">|</span>
+                <a href="signup.html" class="text-primary small">Create account</a>
+              </div>
+            </form>
+
+            <hr class="my-4">
+
+            <div class="text-center text-muted small">
+              <p>Demo credentials:<br>pharmacist@pharmacare.com / password123</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function signIn(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return false;
+      }
+      
+      // In a real app, you would validate against a backend
+      // For demo, just redirect to dashboard
+      window.location.href = 'index.html';
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Low Stock - PharmaCare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c7da0'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/><path d='M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z'/></svg>">
+</head>
+<body>
+  <div id="overlay" class="overlay"></div>
+  
+  <!-- TOPBAR -->
+  <nav id="topbar" class="navbar bg-white border-bottom fixed-top topbar px-3">
+    <div class="d-flex align-items-center">
+      <button id="toggleBtn" class="d-none d-lg-inline-flex btn btn-light btn-icon btn-sm me-2">
+        <i class="ti ti-layout-sidebar-left-expand"></i>
+      </button>
+      <button id="mobileBtn" class="btn btn-light btn-icon btn-sm d-lg-none me-2">
+        <i class="ti ti-menu-2"></i>
+      </button>
+      <span class="badge bg-warning me-2">Low Stock</span>
+      <span class="text-muted small d-none d-md-inline" id="currentDate"></span>
+    </div>
+    
+    <div class="d-flex align-items-center">
+      <ul class="list-unstyled d-flex align-items-center mb-0 gap-2">
+        <li class="dropdown">
+          <a class="position-relative btn-icon btn-sm btn-light btn rounded-circle" data-bs-toggle="dropdown" href="#">
+            <i class="ti ti-bell"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger notification-badge">0</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg p-0">
+            <div class="p-3 border-bottom">
+              <h6 class="mb-0">Notifications</h6>
+            </div>
+            <div class="list-group list-group-flush">
+              <div class="p-4 text-center text-muted">
+                <i class="ti ti-check-circle fs-1 mb-2"></i>
+                <p class="mb-0">No new notifications</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%232c7da0'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='14' font-weight='bold'>DR</text></svg>" alt="avatar" class="rounded-circle" width="32">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#"><i class="ti ti-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="ti ti-settings me-2"></i>Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="signin.html"><i class="ti ti-logout me-2"></i>Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="logo-area">
+      <a href="index.html" class="d-flex align-items-center text-decoration-none">
+        <div class="logo-icon">
+          <span>PC</span>
+        </div>
+        <span class="logo-text ms-2">PharmaCare</span>
+      </a>
+    </div>
+    
+    <ul class="nav flex-column">
+      <li class="px-3 py-2"><small class="text-muted text-uppercase">MAIN</small></li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="ti ti-dashboard"></i>
+          <span class="nav-text">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="inventory.html">
+          <i class="ti ti-packages"></i>
+          <span class="nav-text">Inventory</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="prescriptions.html">
+          <i class="ti ti-prescription"></i>
+          <span class="nav-text">Prescriptions</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="create-product.html">
+          <i class="ti ti-plus-circle"></i>
+          <span class="nav-text">Add Medicine</span>
+        </a>
+      </li>
+      
+      <li class="px-3 py-2 mt-2"><small class="text-muted text-uppercase">TRACKING</small></li>
+      <li class="nav-item">
+        <a class="nav-link" href="expiring-medicines.html">
+          <i class="ti ti-calendar-exclamation"></i>
+          <span class="nav-text">Expiry Tracking</span>
+          <span class="badge bg-danger ms-auto expiring-count">0</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="low-stock.html">
+          <i class="ti ti-alert-triangle"></i>
+          <span class="nav-text">Low Stock</span>
+          <span class="badge bg-warning ms-auto low-stock-count">0</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="suppliers.html">
+          <i class="ti ti-truck"></i>
+          <span class="nav-text">Suppliers</span>
+        </a>
+      </li>
+      
+      <li class="px-3 py-2 mt-2"><small class="text-muted text-uppercase">REPORTS</small></li>
+      <li class="nav-item">
+        <a class="nav-link" href="reports.html">
+          <i class="ti ti-report"></i>
+          <span class="nav-text">Analytics</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="content" class="content">
+    <div class="container-fluid p-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h1 class="h3 mb-1 text-warning">Low Stock Alert</h1>
+          <p class="text-muted mb-0">Medicines below reorder level</p>
+        </div>
+        <div>
+          <button class="btn btn-warning me-2" onclick="generatePurchaseOrder()">
+            <i class="ti ti-shopping-cart-plus me-1"></i>Generate PO
+          </button>
+          <a href="create-product.html" class="btn btn-outline-warning">
+            <i class="ti ti-plus me-1"></i>Add Medicine
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 inventory-table">
+              <thead class="table-warning">
+                <tr>
+                  <th>Medicine</th>
+                  <th>Current Stock</th>
+                  <th>Reorder Level</th>
+                  <th>Days Left</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="low-stock-tbody">
+                <!-- Dynamic content from main.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <div class="container-fluid p-4">
+    <div class="row mt-4">
+      <div class="col-12">
+        <footer class="text-center py-3 text-muted border-top">
+          <p class="mb-0 small">© 2026 PharmaCare Inventory System. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>

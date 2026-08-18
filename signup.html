@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up - PharmaCare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c7da0'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/><path d='M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z'/></svg>">
+</head>
+
+<body class="bg-light">
+  <div class="container">
+    <div class="row min-vh-100 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <div class="logo-icon mx-auto mb-3" style="width: 60px; height: 60px; font-size: 24px;">
+                PC
+              </div>
+              <h2 class="fw-bold">PharmaCare</h2>
+              <p class="text-muted">Create your pharmacy account</p>
+            </div>
+
+            <form onsubmit="return signUp(event)" class="needs-validation" novalidate>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label class="form-label">First Name</label>
+                  <input type="text" class="form-control" required>
+                  <div class="invalid-feedback">Required</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last Name</label>
+                  <input type="text" class="form-control" required>
+                  <div class="invalid-feedback">Required</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control" required>
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">License Number</label>
+                <input type="text" class="form-control" placeholder="e.g., PH-12345" required>
+                <div class="invalid-feedback">Please enter your license number.</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" required minlength="6">
+                <div class="invalid-feedback">Password must be at least 6 characters.</div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" required>
+                <div class="invalid-feedback">Passwords must match.</div>
+              </div>
+
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">I agree to the Terms and Privacy Policy</label>
+                <div class="invalid-feedback">You must agree to continue.</div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Create Account</button>
+
+              <div class="text-center">
+                <span class="text-muted">Already have an account?</span>
+                <a href="signin.html" class="text-primary">Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function signUp(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return false;
+      }
+      
+      // Check if passwords match
+      const password = form.querySelector('input[type="password"]');
+      const confirm = form.querySelectorAll('input[type="password"]')[1];
+      
+      if (password.value !== confirm.value) {
+        confirm.setCustomValidity('Passwords do not match');
+        form.classList.add('was-validated');
+        return false;
+      }
+      
+      alert('Account created successfully! Please sign in.');
+      window.location.href = 'signin.html';
+      return false;
+    }
+  </script>
+</body>
+</html>
